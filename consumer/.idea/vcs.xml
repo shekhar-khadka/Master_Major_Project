@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="$PROJECT_DIR$/Distributed-Multi-Video-Streaming-and-Processing-with-Kafka" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/kafka-stack-docker-compose" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/kafka-stack-docker-compose/Distributed-Multi-Video-Streaming-and-Processing-with-Kafka" vcs="Git" />
-  </component>
-</project>

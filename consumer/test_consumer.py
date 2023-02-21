@@ -1,36 +1,12 @@
-from confluent_kafka import Consumer
+import cv2
+import numpy as np
+import torch
 
-################
-c = Consumer({'bootstrap.servers': 'localhost:9092', 'group.id': 'real-madrid', 'auto.offset.reset': 'earliest'})
-print('Kafka Consumer has been initiated...')
+model = torch.load("best.pt")
 
-print('Available topics to consume: ', c.list_topics().topics)
-config = {
-    'bootstrap.servers': '192.168.1.114:9092',
-    'group.id': 'kafka-multi-video-stream',
-    'enable.auto.commit': False,
-    'default.topic.config': {'auto.offset.reset': 'earliest'}
-}
-
-c.subscribe(['real-madrid'])
-
-
-#
-#
-################
-def main():
-    while True:
-        msg = c.poll(5)  # timeout
-        print(msg)
-        if msg is None:
-            continue
-        if msg.error():
-            print('Error: {}'.format(msg.error()))
-            continue
-        data = msg.value().decode('utf-8')
-        print(data)
-    c.close()
-
-
-main()
-
+img = cv2.imread("img.jpg")
+height, width, _ = img.shape
+img = cv2.resize(img, (640, 640))
+img = np.transpose(img, (2, 0, 1))
+img = img.astype(np.float32)
+img = torch.from_numpy(img)
