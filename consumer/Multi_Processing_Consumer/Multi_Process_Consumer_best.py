@@ -9,6 +9,7 @@ import cv2
 import numpy as np
 import time
 from process_frames import DetectFrames
+import torch
 
 
 
@@ -77,7 +78,7 @@ if __name__ == "__main__":
     # image_source = '1225.jpg'
     conf = 0.5
     img_size = 640,
-    device = 'cpu'
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     weight = 'weights/best.pt'
     conf_thres = 0.25
     iou_thres = 0.45
